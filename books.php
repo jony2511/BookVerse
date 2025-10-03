@@ -30,13 +30,14 @@ foreach ($cats as $c) {
 	echo '<option value="' . (int)$c['cat_id'] . '"' . $sel . '>' . e($c['cat_name']) . '</option>';
 }
 echo '</select>';
-echo '<button class="px-3 py-2 bg-blue-600 text-white rounded" title="' . e(Database::captureSqlForTooltip($sql, $params)) . '">Filter</button>';
+$tooltip = Database::captureSqlForTooltip($sql, $params);
+echo '<button class="px-3 py-2 rounded btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow" data-sql="' . e($tooltip) . '">Filter</button>';
 echo '</form>';
 
 echo '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
 foreach ($books as $bk) {
-	echo '<a href="' . e(base_url('/book.php?id=' . $bk['book_id'])) . '" class="bg-white border rounded-lg overflow-hidden hover:shadow">';
-	echo '<img class="w-full h-40 object-cover" src="' . e($bk['picture']) . '" alt="' . e($bk['title']) . '">';
+	echo '<a href="' . e(base_url('/book.php?id=' . $bk['book_id'])) . '" class="bg-white border rounded-lg overflow-hidden card shadow-sm">';
+	echo '<img class="w-full h-44 object-cover" src="' . e($bk['picture']) . '" alt="' . e($bk['title']) . '">';
 	echo '<div class="p-3">';
 	echo '<div class="font-medium">' . e($bk['title']) . '</div>';
 	echo '<div class="text-xs text-gray-500">' . e($bk['author']) . ' · ' . e($bk['cat_name']) . '</div>';
@@ -46,7 +47,7 @@ foreach ($books as $bk) {
 echo '</div>';
 
 sql_info_panel('Books listing queries', [
-	"List with INNER JOIN and LEFT JOIN view:\n" . Database::captureSqlForTooltip($sql, $params),
+	"List with INNER JOIN and LEFT JOIN view:\n" . $tooltip,
 ]);
 
 render_footer();

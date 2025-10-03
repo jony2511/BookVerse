@@ -13,8 +13,8 @@ $books = $stmt->fetchAll();
 
 echo '<section><div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
 foreach ($books as $bk) {
-	echo '<a href="' . e(base_url('/book.php?id=' . $bk['book_id'])) . '" class="bg-white border rounded-lg overflow-hidden hover:shadow">';
-	echo '<img class="w-full h-40 object-cover" src="' . e($bk['picture']) . '" alt="' . e($bk['title']) . '">';
+	echo '<a href="' . e(base_url('/book.php?id=' . $bk['book_id'])) . '" class="bg-white border rounded-lg overflow-hidden card shadow-sm">';
+	echo '<img class="w-full h-44 object-cover" src="' . e($bk['picture']) . '" alt="' . e($bk['title']) . '">';
 	echo '<div class="p-3">';
 	echo '<div class="font-medium">' . e($bk['title']) . '</div>';
 	echo '<div class="text-xs text-gray-500">' . e($bk['author']) . '</div>';

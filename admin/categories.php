@@ -19,18 +19,32 @@ $rows = $db->run('SELECT c.cat_id, c.cat_name, COUNT(b.book_id) AS num_books FRO
 
 render_header('Admin · Categories', 'LEFT JOIN, GROUP BY, DELETE CASCADE demonstration');
 
-echo '<form method="post" class="bg-white border rounded p-4 mb-6 flex gap-2">';
+echo '<div class="mb-4"><a href="' . e(base_url('/admin/index.php')) . '" class="text-sm text-blue-700 hover:underline">← Back to Dashboard</a></div>';
+
+echo '<form method="post" class="bg-white border rounded p-4 mb-6 flex gap-2 card">';
+
 echo '<input name="cat_name" placeholder="Category name" class="border rounded px-2 py-2" required />';
-echo '<button class="px-3 py-2 bg-blue-600 text-white rounded" title="INSERT INTO categories(cat_name) VALUES (?)">Add</button>';
+
+echo '<button class="px-3 py-2 rounded btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow" data-sql="INSERT INTO categories(cat_name) VALUES (?)">Add</button>';
+
 echo '</form>';
 
-echo '<table class="w-full bg-white border rounded">';
-echo '<tr class="text-left border-b"><th class="p-2">Name</th><th class="p-2">Books</th><th class="p-2">Actions</th></tr>';
+
+echo '<div class="bg-white border rounded card overflow-hidden">';
+
+echo '<table class="w-full">';
+
+echo '<tr class="text-left border-b bg-gray-50"><th class="p-2">Name</th><th class="p-2">Books</th><th class="p-2">Actions</th></tr>';
+
 foreach ($rows as $r) {
 	echo '<tr class="border-b"><td class="p-2">' . e($r['cat_name']) . '</td><td class="p-2">' . (int)$r['num_books'] . '</td>';
-	echo '<td class="p-2"><a class="text-red-600" title="DELETE FROM categories WHERE cat_id = ? (books cascade)" href="?action=delete&id=' . (int)$r['cat_id'] . '" onclick="return confirm(\'Delete?\')">Delete</a></td></tr>';
+	$delSql = 'DELETE FROM categories WHERE cat_id = ? (books cascade)';
+	echo '<td class="p-2"><a class="text-red-600 hover:underline" data-sql="' . e($delSql) . '" href="?action=delete&id=' . (int)$r['cat_id'] . '" onclick="return confirm(\'Delete?\')">Delete</a></td></tr>';
 }
+
 echo '</table>';
+
+echo '</div>';
 
 sql_info_panel('Admin Categories queries', [
 	'SELECT ... LEFT JOIN books ... GROUP BY ...',

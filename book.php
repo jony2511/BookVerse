@@ -15,7 +15,7 @@ render_header($book['title'], $book['author'] . ' · ' . $book['cat_name']);
 
 echo '<div class="grid grid-cols-1 md:grid-cols-3 gap-6">';
 echo '<div class="md:col-span-1">';
-echo '<img class="w-full h-64 object-cover rounded border" src="' . e($book['picture']) . '" alt="' . e($book['title']) . '">';
+echo '<img class="w-full h-64 object-cover rounded border card" src="' . e($book['picture']) . '" alt="' . e($book['title']) . '">';
 echo '<div class="mt-3 text-sm">⭐ ' . number_format((float)$book['avg_rating'],1) . ' (' . (int)$book['review_count'] . ' reviews)</div>';
 echo '</div>';
 
@@ -24,7 +24,7 @@ echo '<div class="space-x-2 mb-4">';
 $favPreview = "INSERT INTO favorites(user_id,book_id) VALUES(?, ?) ON DUPLICATE KEY UPDATE date_added = CURRENT_TIMESTAMP";
 echo '<form method="post" action="favorite_toggle.php" class="inline">';
 echo '<input type="hidden" name="book_id" value="' . (int)$id . '">';
-echo '<button class="px-3 py-2 bg-emerald-600 text-white rounded" title="' . e($favPreview) . '">Add/Update Favorite</button>';
+echo '<button class="px-3 py-2 rounded btn bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 shadow" data-sql="' . e($favPreview) . '">Add/Update Favorite</button>';
 echo '</form>';
 
 echo '</div>';
@@ -32,13 +32,13 @@ echo '<h3 class="font-semibold mb-2">Reviews</h3>';
 
 // Add review form
 if (current_user()) {
-	echo '<form method="post" action="review_add.php" class="mb-4 border rounded p-3 bg-white">';
+	echo '<form method="post" action="review_add.php" class="mb-4 border rounded p-3 bg-white card">';
 	echo '<input type="hidden" name="book_id" value="' . (int)$id . '">';
 	echo '<label class="block text-sm">Rating (1-5)</label><input required type="number" min="1" max="5" name="rating" class="border rounded px-2 py-1 mb-2">';
 	echo '<label class="block text-sm">Comment</label><textarea name="comment" class="border rounded px-2 py-1 w-full" rows="2"></textarea>';
 	echo '<div class="mt-2">';
 	$spPreview = "CALL sp_add_review(:user_id, :book_id, :rating, :comment)";
-	echo '<button class="px-3 py-2 bg-blue-600 text-white rounded" title="' . e($spPreview) . '">Submit Review</button>';
+	echo '<button class="px-3 py-2 rounded btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow" data-sql="' . e($spPreview) . '">Submit Review</button>';
 	echo '</div>';
 	echo '</form>';
 } else {
@@ -50,7 +50,7 @@ $reviews = $db->run($sqlReviews, ['id' => $id])->fetchAll();
 
 echo '<div class="space-y-3">';
 foreach ($reviews as $rv) {
-	echo '<div class="bg-white border rounded p-3">';
+	echo '<div class="bg-white border rounded p-3 card">';
 	echo '<div class="text-sm">⭐ ' . (int)$rv['rating'] . ' · ' . e($rv['name']) . ' · <span class="text-gray-500">' . e($rv['review_date']) . '</span></div>';
 	echo '<div class="text-sm mt-1">' . e($rv['comment'] ?? '') . '</div>';
 	echo '</div>';
