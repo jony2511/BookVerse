@@ -23,7 +23,7 @@ SQL;
 
 $rows = $db->run($sql)->fetchAll();
 
-render_header('Recommendations', 'CTE, JOINs, HAVING');
+render_header('Recommendations', '');
 
 echo '<div class="space-y-3">';
 foreach ($rows as $r) {

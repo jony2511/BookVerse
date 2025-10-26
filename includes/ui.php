@@ -23,7 +23,7 @@ function render_header(string $title, string $subtitle = ''): void {
 	echo '<a class="nav-link" href="' . e(base_url('/books.php')) . '">Books</a>';
 	echo '<a class="nav-link" href="' . e(base_url('/favorites.php')) . '">Favorites</a>';
 	echo '<a class="nav-link" href="' . e(base_url('/recommendations.php')) . '">Recommendations</a>';
-	echo '<a class="nav-link" href="' . e(base_url('/sql-search.php')) . '">SQL Index</a>';
+//	echo '<a class="nav-link" href="' . e(base_url('/sql-search.php')) . '">SQL Index</a>';
 	require_once __DIR__ . '/auth.php';
 	if ($u = current_user()) {
 		echo '<span class="nav-link">|</span>';

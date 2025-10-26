@@ -14,7 +14,7 @@ $sqlExecuted = '';
 ?>
 
 <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg p-8 mb-8 shadow-xl">
-	<h1 class="text-3xl font-bold mb-4">🎯 Interactive SQL Demonstrations</h1>
+	<h1 class="text-3xl font-bold mb-4">🎯STATISTICS with  SQL Demonstrations</h1>
 	<p class="text-lg opacity-90">Click any button below to execute and view results of different SQL operations</p>
 </div>
 

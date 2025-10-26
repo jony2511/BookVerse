@@ -46,9 +46,9 @@ foreach ($books as $bk) {
 }
 echo '</div>';
 
-sql_info_panel('Books listing queries', [
-	"List with INNER JOIN and LEFT JOIN view:\n" . $tooltip,
-]);
+// sql_info_panel('Books listing queries', [
+// 	"List with INNER JOIN and LEFT JOIN view:\n" . $tooltip,
+// ]);
 
 render_footer();
 ?>

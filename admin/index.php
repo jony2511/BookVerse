@@ -16,11 +16,7 @@ $topCats = $db->run($qTopCats)->fetchAll();
 
 render_header('Admin · Dashboard', 'Key statistics with GROUP BY and aggregates');
 
-echo '<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">';
-echo '<div class="bg-white border rounded p-4 card shadow-sm" data-sql="' . e($qBooks) . '"><div class="text-sm text-gray-500">Books</div><div class="text-2xl font-semibold">' . $books . '</div></div>';
-echo '<div class="bg-white border rounded p-4 card shadow-sm" data-sql="' . e($qReviews) . '"><div class="text-sm text-gray-500">Reviews</div><div class="text-2xl font-semibold">' . $reviews . '</div></div>';
-echo '<div class="bg-white border rounded p-4 card shadow-sm" data-sql="' . e($qUsers) . '"><div class="text-sm text-gray-500">Users</div><div class="text-2xl font-semibold">' . $users . '</div></div>';
-echo '</div>';
+
 
 echo '<div class="bg-white border rounded p-4 card shadow-sm">';
 echo '<div class="font-semibold mb-3">Top Categories</div>';
@@ -37,12 +33,12 @@ echo '<a href="' . e(base_url('/admin/books.php')) . '" class="px-3 py-2 rounded
 echo '<a href="' . e(base_url('/admin/categories.php')) . '" class="px-3 py-2 rounded btn bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 shadow" data-sql="SELECT * FROM categories ORDER BY cat_name">Manage Categories</a>';
 echo '</div>';
 
-sql_info_panel('Admin Dashboard queries', [
-	$qBooks,
-	$qReviews,
-	$qUsers,
-	$qTopCats,
-]);
+// sql_info_panel('Admin Dashboard queries', [
+// 	$qBooks,
+// 	$qReviews,
+// 	$qUsers,
+// 	$qTopCats,
+// ]);
 
 render_footer();
 ?>

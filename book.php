@@ -59,12 +59,12 @@ echo '</div>';
 
 echo '</div></div>';
 
-sql_info_panel('Book details queries', [
-	Database::captureSqlForTooltip($sqlBook, ['id' => $id]),
-	Database::captureSqlForTooltip($sqlReviews, ['id' => $id]),
-	'Favorite UPSERT using ON DUPLICATE KEY UPDATE',
-	'CALL sp_add_review(...) stored procedure',
-]);
+// sql_info_panel('Book details queries', [
+// 	Database::captureSqlForTooltip($sqlBook, ['id' => $id]),
+// 	Database::captureSqlForTooltip($sqlReviews, ['id' => $id]),
+// 	'Favorite UPSERT using ON DUPLICATE KEY UPDATE',
+// 	'CALL sp_add_review(...) stored procedure',
+// ]);
 
 render_footer();
 ?>
